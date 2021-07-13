@@ -11,6 +11,7 @@ const rl = readline.createInterface({
 console.log(mensagens.boasVindas,mensagens.regras,mensagens.aviso);
 rl.question(mensagens.dificuldade, async function(x){await perguntinha(x)});
 
+
 rl.on("close", function() 
 {
     console.log("\n !!!Fim de Jogo!!!");
@@ -37,27 +38,27 @@ async function perguntinha(numeroDificuldade)
         {   
             case "1": 
                 await numeroGerado(await aleatorio(0, 100))
-                console.log(mensagens.avisoFacil,mensagens.startFacil,mensagens.numeroPensado);
-                setTimeout(tempoesgotado, 60000);
+                console.log(mensagens.avisoFacil,mensagens.startFacil,mensagens.duracao,mensagens.numeroPensado);
+                setTimeout(tempoesgotado, 1000);
                 break;
             case "2": 
                 await numeroGerado(await aleatorio(0, 1000));
-                console.log(mensagens.avisoMedio,mensagens.startMedio,mensagens.numeroPensado);
+                console.log(mensagens.avisoMedio,mensagens.startMedio,mensagens.duracao,mensagens.numeroPensado);
                 setTimeout(tempoesgotado, 60000);
                 break;
             case "3": 
                 await numeroGerado(await aleatorio(0, 999999));
-                console.log(mensagens.avisoDificil,mensagens.startDificil,mensagens.numeroPensado);
+                console.log(mensagens.avisoDificil,mensagens.startDificil,mensagens.duracaoHard,mensagens.numeroPensado);
                 setTimeout(tempoesgotado, 120000);
                 break;
             case "4": 
                 await numeroGerado(await aleatorio(0, 2345987));
-                console.log(mensagens.avisoInsano,mensagens.startInsano,mensagens.numeroPensado);
+                console.log(mensagens.avisoInsano,mensagens.startInsano,mensagens.duracaoHard,mensagens.numeroPensado);
                 setTimeout(tempoesgotado, 120000);
                 break;
             case "5": 
                 await numeroGerado(await aleatorio(-2345987, 2345999));
-                console.log(mensagens.avisoImpossivel,mensagens.startImpossivel,mensagens.numeroPensado);
+                console.log(mensagens.avisoImpossivel,mensagens.startImpossivel,mensagens.duracaoHard,mensagens.numeroPensado);
                 setTimeout(tempoesgotado, 120000);
                 break;
             default: 
@@ -74,7 +75,8 @@ async function respostinha(numeroChutado,resposta)
     if(numeroChutado == resposta)
     {
         console.log(mensagens.mensagemFinal);
-        rl.close();
+        rl.question(mensagens.jogarNovamente, async function(x){await jogarNovamente(x)});
+
     }
     else if(numeroChutado > resposta)
     {       
@@ -93,5 +95,21 @@ async function maior(resposta)
 function tempoesgotado()
 {   
     console.log("\n !!!Tempo Esgotado!!!");
-    process.exit(0);
+    rl.question(mensagens.jogarNovamente, async function(x){await jogarNovamente(x)});
 } 
+async function jogarNovamente(input)
+{
+    if(input == 1)
+    {
+        rl.question(mensagens.dificuldade, async function(x){await perguntinha(x)});
+    }
+    else if(input == 2)
+    {
+        rl.close();
+    }
+    else
+    {
+        console.log("Digite apenas 1 para SIM ou 2 para NÃO");
+        rl.question(mensagens.jogarNovamente, async function(x){await jogarNovamente(x)});
+    }
+}

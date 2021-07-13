@@ -17,5 +17,8 @@ module.exports =
     numeroPensado: "\nQue número pensei: ?",
     mensagemFinal: "Parabéns você acertou!!! Seu Prêmio é Uma nota de 3 Reais",
     dicasMaior: "Sua habilidade de adivinhação está muito alta, diminua se quiser o prêmio\n",
-    dicasMenor:"Sua habilidade de adivinhação está muito baixa, aumente se quiser o prêmio\n"
+    dicasMenor:"Sua habilidade de adivinhação está muito baixa, aumente se quiser o prêmio\n",
+    duracao:"\nLembrem-se caso você não acerte meu número em 60 segundos,você será transformado em uma galinha",
+    duracaoHard:"\nLembrem-se caso você não acerte meu número em 120 segundos,você será transformado em uma galinha",
+    jogarNovamente:"Gostaria de Aceitar meu Desafio Novamente! \n 1 - SIM \n 2 - NÃO\n" 
 }
