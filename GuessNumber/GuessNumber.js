@@ -38,22 +38,27 @@ async function perguntinha(numeroDificuldade)
             case "1": 
                 await numeroGerado(await aleatorio(0, 100))
                 console.log(mensagens.avisoFacil,mensagens.startFacil,mensagens.numeroPensado);
+                setTimeout(tempoesgotado, 60000);
                 break;
             case "2": 
                 await numeroGerado(await aleatorio(0, 1000));
                 console.log(mensagens.avisoMedio,mensagens.startMedio,mensagens.numeroPensado);
+                setTimeout(tempoesgotado, 60000);
                 break;
             case "3": 
                 await numeroGerado(await aleatorio(0, 999999));
                 console.log(mensagens.avisoDificil,mensagens.startDificil,mensagens.numeroPensado);
+                setTimeout(tempoesgotado, 120000);
                 break;
             case "4": 
                 await numeroGerado(await aleatorio(0, 2345987));
                 console.log(mensagens.avisoInsano,mensagens.startInsano,mensagens.numeroPensado);
+                setTimeout(tempoesgotado, 120000);
                 break;
             case "5": 
                 await numeroGerado(await aleatorio(-2345987, 2345999));
                 console.log(mensagens.avisoImpossivel,mensagens.startImpossivel,mensagens.numeroPensado);
+                setTimeout(tempoesgotado, 120000);
                 break;
             default: 
                 console.log("Valor Invalido");
@@ -63,7 +68,6 @@ async function perguntinha(numeroDificuldade)
 async function numeroGerado(resposta)
 {
     rl.question("", x => respostinha(x , resposta));
-     
 } 
 async function respostinha(numeroChutado,resposta)
 {
@@ -85,4 +89,9 @@ async function menor(resposta)
 async function maior(resposta)
 {
     rl.question(mensagens.dicasMaior, x => respostinha(x , resposta)); 
-}  
+} 
+function tempoesgotado()
+{   
+    console.log("\n !!!Tempo Esgotado!!!");
+    process.exit(0);
+} 
